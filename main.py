@@ -43,7 +43,8 @@ def main():
 #         config.get_params_DNN5(),
 #         config.get_params_DNN6(),
 #         config.get_params_DNN10(),
-        config.get_params_DNN11(),
+        # config.get_params_DNN11(),
+        config.get_params_DNN15(),
         ]:
         run_model(params)
 

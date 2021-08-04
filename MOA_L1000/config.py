@@ -420,3 +420,28 @@ def get_params_DNN14():
             )
     return params
 
+
+def get_params_DNN15():
+    """ 
+    Like DNN8 but with the new strict kfold cv
+    """
+    label = "DNN8"
+    params = dict(
+            smoothing_alpha=0.001,
+            n_folds=5,
+            SEEDS=[0, 1],
+            test_size=0.2,
+            learning_rate=0.001,
+            early_stopping_patience=10,
+            batch_size=128,
+            n_epochs=100,
+            data_loader="dataload.load_data_v1",
+            model_loader="models.get_model_6",
+            Transformer="transformers.TransformerDummy",
+            lr_schedule="utils.lr_schedule_2",  # rapid decay
+            fcn_get_class_weights="utils.get_class_weight_log_balanced",
+            label=label,
+            output_directory=os.path.join(OUTDIR, label),
+            cv="utils.multilabel_stratified_kfold_by_drug"
+            )
+    return params
