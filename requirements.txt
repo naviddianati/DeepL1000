@@ -1,0 +1,8 @@
+iterative_stratification==0.1.6
+pandas==1.2.4
+keras_nightly==2.5.0.dev2021032900
+numpy==1.19.5
+scipy==1.6.3
+cmapPy==4.0.1
+keras==2.4.3
+scikit_learn==0.24.2
