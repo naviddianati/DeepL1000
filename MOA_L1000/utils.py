@@ -70,7 +70,7 @@ def get_class_weight_equal(y_train):
 def lr_schedule_1(epoch, lr):
     # Learning rate schecule
     # After epoch 10, halve lr 
-    # every 5 epochs
+    # then * 0.97 every 5 epochs
     logger.info("Epoch {}, learning rate: {}".format(epoch, lr))
     if epoch < 10:
         return lr 
@@ -98,6 +98,17 @@ def lr_schedule_3(epoch, lr):
     logger.info("Epoch {}, learning rate: {}".format(epoch, lr))
     if epoch < 10:
         return lr * 0.95
+    else:
+        if epoch % 5 == 0:
+            return lr * 0.95
+        else:
+            return lr
+
+
+def lr_schedule_4(epoch, lr):
+    logger.info("Epoch {}, learning rate: {}".format(epoch, lr))
+    if epoch < 10:
+        return lr * 0.97
     else:
         if epoch % 5 == 0:
             return lr * 0.95
@@ -133,7 +144,7 @@ def multilabel_stratified_kfold_by_drug(y, n_splits=None, **kwargs):
         perts_train = df_drug_annots.index[ind_train]
         perts_test = df_drug_annots.index[ind_test]
 
-        # DataFrame indexed like y_train with columns ['id']
+        # DataFrame indexed like y with columns ['id']
         # where id is a counting integer. 
         annots = pd.DataFrame(range(len(y)), index=y.index, columns=['id'])
         inds_train = annots.loc[perts_train]['id'].values

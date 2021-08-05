@@ -74,8 +74,8 @@ def compute_precision(df_solution, y_holdout):
         .reset_index()
     )
     
-    x.columns = ['moa', 'sig_id', 'is_top']
-    precisions = x.groupby('moa')['is_top'].mean().sort_values()
+    x.columns = ['moa', 'sig_id', 'precision']
+    precisions = x.groupby('moa')['precision'].mean().sort_values()
     return precisions
 
 
@@ -108,4 +108,5 @@ def compute_recall(df_solution, y_holdout):
             lambda d: 1. * len(d[d['rank'] == 1]) / len(d)
     )
     recall = recall.sort_values()
+    recall.name = "recall"
     return recall
